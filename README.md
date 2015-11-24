@@ -10,4 +10,4 @@
 
 add :
 
-`10 00 * * * /home/penny/osm-history-processor/buildosm.sh`
+`10 * * * *  /home/penny/osm-history-processor/buildosm.sh`
