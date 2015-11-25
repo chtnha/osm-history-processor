@@ -14,6 +14,8 @@ echo "${DAYLATEST:6:3}.osc.gz to ${DAYLATEST:6:3}.osm"
 osmconvert ${DAYLATEST:6:3}.osc.gz -o=temp.osm
 
 echo "Filter by user"
+rm users
+wget https://raw.githubusercontent.com/mapbox/osm-history-processor/master/users
 users=("$(cat users)")
 IFS="," read -ra STR_ARRAY <<< "$users"
 for j in "${STR_ARRAY[@]}"
@@ -24,7 +26,7 @@ rm temp.osm
 rm day
 tar -zcvf ${DAYLATEST:6:3}.tar.gz *.osm
 
-echo upload S3
+echo "upload S3"
 aws s3 cp  ${DAYLATEST:6:3}.tar.gz $OHPBUCKET/day/${DAYLATEST:0:3}/${DAYLATEST:3:3}/
 rm *.gz
 rm *.osm

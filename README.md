@@ -2,12 +2,8 @@
 
 ### Install dependency
 
-`./install.sh`
+`./install.sh && npm install`
 
-### Configure cron job
+###  Run
 
-`crontab -e`
-
-add :
-
-`10 00 * * *  /home/penny/osm-history-processor/buildosm.sh`
+`forever start index.js`
