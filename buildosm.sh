@@ -20,6 +20,7 @@ users=("$(cat users)")
 IFS="," read -ra STR_ARRAY <<< "$users"
 for j in "${STR_ARRAY[@]}"
   do
+  	echo "Filtering OSM file for user:  : $j"
     osmfilter temp.osm --keep=@user=$j -o=$j.osm
 done
 rm temp.osm

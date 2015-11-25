@@ -4,7 +4,8 @@
   "description": "### Install dependency",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "./node_modules/.bin/forever start index.js && ./node_modules/.bin/forever list",
+    "stop": "./node_modules/.bin/forever stop index.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/mapbox/osm-history-processor#readme",
   "dependencies": {
+    "forever": "^0.15.1",
     "node-crontab": "0.0.8",
     "sys": "0.0.1"
   }
