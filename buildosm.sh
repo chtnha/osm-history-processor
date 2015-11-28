@@ -4,11 +4,13 @@ OHPBUCKET=s3://mapbox/osm-history-processor
 SRCBUCKET=s3://osm-changesets
 
 echo "Getting id from latest replication day file..."
-aws s3 cp --quiet $SRCBUCKET/state/day .
+#echo aws s3 cp --quiet $SRCBUCKET/state/day .
+wget https://s3.amazonaws.com/osm-changesets/state/day
 DAYLATEST=$(cat day)
 
 echo "Getting latest replication day file..."
-aws s3 cp --quiet $SRCBUCKET/day/${DAYLATEST:0:3}/${DAYLATEST:3:3}/${DAYLATEST:6:3}.osc.gz .
+#aws s3 cp --quiet $SRCBUCKET/day/${DAYLATEST:0:3}/${DAYLATEST:3:3}/${DAYLATEST:6:3}.osc.gz .
+wget https://s3.amazonaws.com/osm-changesets/day/${DAYLATEST:0:3}/${DAYLATEST:3:3}/${DAYLATEST:6:3}.osc.gz 
 
 echo "${DAYLATEST:6:3}.osc.gz to ${DAYLATEST:6:3}.osm"
 osmconvert ${DAYLATEST:6:3}.osc.gz -o=temp.osm
